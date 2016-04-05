@@ -55,11 +55,15 @@ public class NavActivity extends AppCompatActivity {
 
     public void viewMessages(View v){
         Intent intent = new Intent(this, ViewMessagesActivity.class);
-        startActivity(intent);
+        launch(intent);
     }
 
     public void sendMessage(View v){
         Intent intent = new Intent(this, SendMessageActivity.class);
+        launch(intent);
+    }
+
+    private void launch(Intent intent) {
         intent.putExtra(ParlezVousActivity.EXTRA_USERNAME, user);
         intent.putExtra(ParlezVousActivity.EXTRA_PASSWORD, pass);
         startActivity(intent);

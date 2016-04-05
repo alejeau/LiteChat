@@ -18,7 +18,7 @@ public class ViewMessagesTask extends android.os.AsyncTask<String, Integer, Stri
     String result = null;
     String textUrl = null;
 
-    ViewMessagesTask() {}
+    public ViewMessagesTask() {}
 
     public ViewMessagesTask(ParlezVousActivity activity) {
         this.activity = activity;
