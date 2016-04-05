@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">LiteChat</string>
+    <string name="menuLogout">Log out</string>
+
+    <string name="textViewUserName">User name</string>
+    <string name="textViewPassword">Password</string>
+    <string name="textViewHeader">Connection form</string>
+
+    <string name="textFieldUserName">Name</string>
+    <string name="textFieldPassword"></string>
+
+    <string name="buttonSend">Send</string>
+    <string name="buttonClear">Clear</string>
+    <string name="title_activity_navigation">NavigationActivity</string>
+    <string name="title_activity_nav">NavActivity</string>
+</resources>

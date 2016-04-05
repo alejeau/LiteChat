@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.excilys.android.formation.chatlite">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <!--<uses-permission android:name="android.permission.READ_SMS" />-->
+
+
+    <receiver class="com.excilys.android.formation.chatlite.SMSReceiver"
+        android:name="com.excilys.android.formation.chatlite.SMSReceiver">
+        <intent-filter android:priority="100">
+            <action android:name="android.provider.Telephony.Sms.Intents.SMS_RECEIVED_ACTION" />
+        </intent-filter>
+    </receiver>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name="com.excilys.android.formation.chatlite.ParlezVousActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.excilys.android.formation.chatlite.ParlezVousTask" />
+        <activity
+            android:name="com.excilys.android.formation.chatlite.NavActivity"
+            android:label="@string/title_activity_nav"
+            android:parentActivityName="com.excilys.android.formation.chatlite.ParlezVousActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.excilys.android.formation.chatlite.ParlezVousActivity" />
+        </activity>
+    </application>
+
+</manifest>
