@@ -15,16 +15,28 @@ public class ViewMessagesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_messages);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        if(toolbar != null) {
+            setSupportActionBar(toolbar);
+            getSupportActionBar().setTitle("View messages");
+            getSupportActionBar().setHomeButtonEnabled(true);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                refresh();
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
+
+    public void refresh(){
+
+
+    }
+
+//    private
 
 }

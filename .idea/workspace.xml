@@ -81,7 +81,17 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/excilys/android/formation/chatlite/NavActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="63" column="43" selection-start-line="63" selection-start-column="43" selection-end-line="63" selection-end-column="43" />
+              <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ViewMessagesActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/excilys/android/formation/chatlite/ViewMessagesActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="39" column="13" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -91,8 +101,24 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/excilys/android/formation/chatlite/ParlezVousActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="53" column="29" selection-start-line="53" selection-start-column="29" selection-end-line="53" selection-end-column="29" />
+              <caret line="61" column="20" selection-start-line="61" selection-start-column="20" selection-end-line="62" selection-end-column="91" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ViewMessagesTask.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/excilys/android/formation/chatlite/tasks/ViewMessagesTask.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="14" column="74" selection-start-line="14" selection-start-column="67" selection-end-line="14" selection-end-column="74" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1692#1693#0" expanded="true" />
+                <element signature="e#1726#1727#0" expanded="true" />
+                <element signature="e#1760#1761#0" expanded="true" />
+                <element signature="e#1795#1796#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -100,21 +126,9 @@
       <file leaf-file-name="SendMessageActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/excilys/android/formation/chatlite/SendMessageActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.78443116">
-              <caret line="51" column="22" selection-start-line="51" selection-start-column="22" selection-end-line="51" selection-end-column="22" />
+            <state vertical-scroll-proportion="0.70359284">
+              <caret line="59" column="63" selection-start-line="59" selection-start-column="63" selection-end-line="59" selection-end-column="63" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SendMessageTask.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/excilys/android/formation/chatlite/tasks/SendMessageTask.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="16" column="11" selection-start-line="16" selection-start-column="11" selection-end-line="16" selection-end-column="11" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -1735,6 +1749,8 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/excilys/android/formation/chatlite/ParlezVousActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/excilys/android/formation/chatlite/tasks/ParlezVousTask.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/excilys/android/formation/chatlite/tasks/SendMessageTask.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/excilys/android/formation/chatlite/tasks/ViewMessagesTask.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/excilys/android/formation/chatlite/ViewMessagesActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/excilys/android/formation/chatlite/SendMessageActivity.java" />
       </list>
     </option>
@@ -2176,7 +2192,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3291506" sideWeight="0.5021299" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3291506" sideWeight="0.49574015" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3291506" sideWeight="0.49574015" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960597" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3291506" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -2370,14 +2386,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/excilys/android/formation/chatlite/ViewMessagesActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_nav.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-19.642857">
@@ -2400,14 +2408,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/excilys/android/formation/chatlite/tasks/ParlezVousTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="16" column="3" selection-start-line="16" selection-start-column="3" selection-end-line="63" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Android/Sdk/sources/android-23/android/widget/EditText.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33233532">
@@ -2419,17 +2419,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/excilys/android/formation/chatlite/ParlezVousActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="53" column="29" selection-start-line="53" selection-start-column="29" selection-end-line="53" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/excilys/android/formation/chatlite/tasks/SendMessageTask.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="0.16467066">
           <caret line="16" column="11" selection-start-line="16" selection-start-column="11" selection-end-line="16" selection-end-column="11" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -2437,18 +2429,56 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/excilys/android/formation/chatlite/tasks/ParlezVousTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.13473053">
+          <caret line="15" column="82" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="82" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/excilys/android/formation/chatlite/NavActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="63" column="43" selection-start-line="63" selection-start-column="43" selection-end-line="63" selection-end-column="43" />
+          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/excilys/android/formation/chatlite/ViewMessagesActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="39" column="13" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/excilys/android/formation/chatlite/ParlezVousActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="61" column="20" selection-start-line="61" selection-start-column="20" selection-end-line="62" selection-end-column="91" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/excilys/android/formation/chatlite/tasks/ViewMessagesTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="74" selection-start-line="14" selection-start-column="67" selection-end-line="14" selection-end-column="74" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1692#1693#0" expanded="true" />
+            <element signature="e#1726#1727#0" expanded="true" />
+            <element signature="e#1760#1761#0" expanded="true" />
+            <element signature="e#1795#1796#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/excilys/android/formation/chatlite/SendMessageActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.78443116">
-          <caret line="51" column="22" selection-start-line="51" selection-start-column="22" selection-end-line="51" selection-end-column="22" />
+        <state vertical-scroll-proportion="0.70359284">
+          <caret line="59" column="63" selection-start-line="59" selection-start-column="63" selection-end-line="59" selection-end-column="63" />
           <folding />
         </state>
       </provider>

@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.excilys.android.formation.chatlite.tasks.SendMessageTask;
 
@@ -47,12 +48,17 @@ public class SendMessageActivity extends AppCompatActivity {
     public void send() {
         EditText et = (EditText) findViewById(R.id.editTextSendMessage);
         String message = et.getText().toString();
-        try {
-            message = URLEncoder.encode(message, "UTF-8");
-            message = message.replace("+", "%20");
-            new SendMessageTask().execute(user, pass, message).get();
-        } catch (Exception e) { }
-        finish();
+        if (!message.equals("")) {
+            try {
+                message = URLEncoder.encode(message, "UTF-8");
+                message = message.replace("+", "%20");
+                new SendMessageTask().execute(user, pass, message).get();
+            } catch (Exception e) {
+            }
+            finish();
+        } else {
+            Toast.makeText(this, "Cannot send an empty message!", Toast.LENGTH_SHORT).show();
+        }
 
     }
 
