@@ -4,11 +4,11 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
-    <!--<uses-permission android:name="android.permission.READ_SMS" />-->
+    <!-- <uses-permission android:name="android.permission.READ_SMS" /> -->
 
-
-    <receiver class="com.excilys.android.formation.chatlite.SMSReceiver"
-        android:name="com.excilys.android.formation.chatlite.SMSReceiver">
+    <receiver
+        android:name=".SMSReceiver"
+        class="com.excilys.android.formation.chatlite.SMSReceiver">
         <intent-filter android:priority="100">
             <action android:name="android.provider.Telephony.Sms.Intents.SMS_RECEIVED_ACTION" />
         </intent-filter>
@@ -20,22 +20,40 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.excilys.android.formation.chatlite.ParlezVousActivity">
+        <activity android:name=".ParlezVousActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.excilys.android.formation.chatlite.ParlezVousTask" />
+        <activity android:name=".tasks.ParlezVousTask" />
         <activity
-            android:name="com.excilys.android.formation.chatlite.NavActivity"
+            android:name=".NavActivity"
             android:label="@string/title_activity_nav"
-            android:parentActivityName="com.excilys.android.formation.chatlite.ParlezVousActivity"
+            android:parentActivityName=".ParlezVousActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.excilys.android.formation.chatlite.ParlezVousActivity" />
+        </activity>
+        <activity
+            android:name=".SendMessageActivity"
+            android:label="@string/title_activity_send_message"
+            android:parentActivityName=".NavActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.excilys.android.formation.chatlite.NavActivity" />
+        </activity>
+        <activity
+            android:name=".ViewMessagesActivity"
+            android:label="@string/title_activity_view_messages"
+            android:parentActivityName=".NavActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.excilys.android.formation.chatlite.NavActivity" />
         </activity>
     </application>
 

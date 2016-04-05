@@ -12,13 +12,42 @@
     tools:context="com.excilys.android.formation.chatlite.NavActivity"
     tools:showIn="@layout/activity_nav">
 
-    <com.excilys.android.formation.chatlite.drawing.ParlezVousView
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_margin="60dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/white" />
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true">
 
-    <!--<TextView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:id="@+id/textViewUrl" />-->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal">
+
+            <Button
+                android:id="@+id/buttonViewMessages"
+                android:text="@string/buttonViewMessages"
+                android:onClick="viewMessages"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|center_horizontal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal">
+
+            <Button
+                android:id="@+id/buttonSendMessage"
+                android:text="@string/buttonSendMessage"
+                android:onClick="sendMessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|center_horizontal" />
+        </LinearLayout>
+    </LinearLayout>
 </RelativeLayout>

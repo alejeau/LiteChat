@@ -1,8 +1,10 @@
-package com.excilys.android.formation.chatlite;
+package com.excilys.android.formation.chatlite.tasks;
 
 import android.view.View;
 import android.widget.ProgressBar;
 
+import com.excilys.android.formation.chatlite.ParlezVousActivity;
+import com.excilys.android.formation.chatlite.R;
 import com.excilys.android.formation.chatlite.tools.InputStreamToString;
 
 import java.io.BufferedInputStream;
@@ -19,7 +21,7 @@ public class ParlezVousTask extends android.os.AsyncTask<String, Integer, String
 
     ParlezVousTask() {}
 
-    ParlezVousTask(ParlezVousActivity activity) {
+    public ParlezVousTask(ParlezVousActivity activity) {
         this.activity = activity;
         loadingWheel = (ProgressBar) this.activity.findViewById(R.id.loadingWheel);
     }

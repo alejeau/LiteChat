@@ -1,5 +1,6 @@
 package com.excilys.android.formation.chatlite;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -11,6 +12,8 @@ import android.view.MenuItem;
 import android.view.View;
 
 public class NavActivity extends AppCompatActivity {
+    String user;
+    String pass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,16 +21,16 @@ public class NavActivity extends AppCompatActivity {
         setContentView(R.layout.activity_nav);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        if(toolbar != null) {
+            setSupportActionBar(toolbar);
+            getSupportActionBar().setTitle("Main menu");
+            getSupportActionBar().setHomeButtonEnabled(true);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Intent intent = getIntent();
+        this.user = intent.getStringExtra(ParlezVousActivity.EXTRA_USERNAME);
+        this.pass = intent.getStringExtra(ParlezVousActivity.EXTRA_PASSWORD);
 
     }
 
@@ -48,5 +51,17 @@ public class NavActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public void viewMessages(View v){
+        Intent intent = new Intent(this, ViewMessagesActivity.class);
+        startActivity(intent);
+    }
+
+    public void sendMessage(View v){
+        Intent intent = new Intent(this, SendMessageActivity.class);
+        intent.putExtra(ParlezVousActivity.EXTRA_USERNAME, user);
+        intent.putExtra(ParlezVousActivity.EXTRA_PASSWORD, pass);
+        startActivity(intent);
     }
 }

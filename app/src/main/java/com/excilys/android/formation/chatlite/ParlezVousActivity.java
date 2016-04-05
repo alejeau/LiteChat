@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.excilys.android.formation.chatlite.tasks.ParlezVousTask;
+
 public class ParlezVousActivity extends AppCompatActivity {
     public static final String PREFS_NAME = "MyPrefsFile";
     public final static String EXTRA_USERNAME = "com.excilys.android.formation.chatlite.USERNAME";
