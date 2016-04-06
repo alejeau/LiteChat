@@ -5,6 +5,7 @@ import android.widget.ProgressBar;
 
 import com.excilys.android.formation.chatlite.activities.LogInActivity;
 import com.excilys.android.formation.chatlite.R;
+import com.excilys.android.formation.chatlite.connection.RestConnection;
 import com.excilys.android.formation.chatlite.tools.InputStreamToString;
 
 import java.io.BufferedInputStream;
@@ -33,21 +34,8 @@ public class LogInTask extends android.os.AsyncTask<String, Integer, String> {
 
     @Override
     protected String doInBackground(String... params) {
-        this.textUrl = "http://formation-android-esaip.herokuapp.com/connect/" + params[0] + "/" + params[1];
-        URL url = null;
-        HttpURLConnection urlConnection = null;
-        try {
-            url = new URL(textUrl);
-            urlConnection = (HttpURLConnection) url.openConnection();
-            InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-            String res = InputStreamToString.convert(in);
-            this.result = res;
-        } catch (Exception e) {
-        } finally {
-            urlConnection.disconnect();
-        }
-
-        return result;
+        this.result = RestConnection.isValidUser(params[0], params[1]);
+        return this.result;
     }
 
     @Override

@@ -1,9 +1,11 @@
 package com.excilys.android.formation.chatlite.tasks;
 
+import com.excilys.android.formation.chatlite.connection.RestConnection;
+
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class SendMessageTask extends android.os.AsyncTask<String, Integer, String> {
+public class SendMessageTask extends android.os.AsyncTask<String, Integer, Void> {
 
     public SendMessageTask() {}
 
@@ -11,23 +13,11 @@ public class SendMessageTask extends android.os.AsyncTask<String, Integer, Strin
     protected void onPreExecute() { }
 
     @Override
-    protected String doInBackground(String... params) {
-        String textUrl = "http://formation-android-esaip.herokuapp.com/message/" + params[0] + "/" + params[1] + "/" + params[2];
-        URL url = null;
-        HttpURLConnection urlConnection = null;
-        try {
-            url = new URL(textUrl);
-            urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.getInputStream();
-//            InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-        } catch (Exception e) {
-        } finally {
-            urlConnection.disconnect();
-        }
-
-        return "";
+    protected Void doInBackground(String... params) {
+        RestConnection.sendMessage(params[0], params[1], params[2]);
+        return null;
     }
 
     @Override
-    protected void onPostExecute(String result) { }
+    protected void onPostExecute(Void naught) { }
 }
