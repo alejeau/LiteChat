@@ -5,7 +5,7 @@
     <string name="buttonViewMessages">View messages</string>
     <string name="buttonSendMessage">Send message</string>
 
-    <string name="textViewUserName">User name</string>
+    <string name="textViewUserName">Username</string>
     <string name="textViewPassword">Password</string>
     <string name="textViewHeader">Connection form</string>
 

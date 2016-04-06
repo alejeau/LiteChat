@@ -1,4 +1,4 @@
-package com.excilys.android.formation.chatlite;
+package com.excilys.android.formation.chatlite.receivers;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

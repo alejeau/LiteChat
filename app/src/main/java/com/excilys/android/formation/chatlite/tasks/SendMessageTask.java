@@ -1,14 +1,5 @@
 package com.excilys.android.formation.chatlite.tasks;
 
-import android.view.View;
-import android.widget.ProgressBar;
-
-import com.excilys.android.formation.chatlite.ParlezVousActivity;
-import com.excilys.android.formation.chatlite.R;
-import com.excilys.android.formation.chatlite.tools.InputStreamToString;
-
-import java.io.BufferedInputStream;
-import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 

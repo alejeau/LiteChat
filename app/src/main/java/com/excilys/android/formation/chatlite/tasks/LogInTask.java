@@ -3,7 +3,7 @@ package com.excilys.android.formation.chatlite.tasks;
 import android.view.View;
 import android.widget.ProgressBar;
 
-import com.excilys.android.formation.chatlite.ParlezVousActivity;
+import com.excilys.android.formation.chatlite.activities.LogInActivity;
 import com.excilys.android.formation.chatlite.R;
 import com.excilys.android.formation.chatlite.tools.InputStreamToString;
 
@@ -13,15 +13,15 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 
-public class ParlezVousTask extends android.os.AsyncTask<String, Integer, String> {
-    protected ParlezVousActivity activity;
+public class LogInTask extends android.os.AsyncTask<String, Integer, String> {
+    protected LogInActivity activity;
     protected ProgressBar loadingWheel;
     String result = null;
     String textUrl = null;
 
-    ParlezVousTask() {}
+    LogInTask() {}
 
-    public ParlezVousTask(ParlezVousActivity activity) {
+    public LogInTask(LogInActivity activity) {
         this.activity = activity;
         loadingWheel = (ProgressBar) this.activity.findViewById(R.id.loadingWheel);
     }

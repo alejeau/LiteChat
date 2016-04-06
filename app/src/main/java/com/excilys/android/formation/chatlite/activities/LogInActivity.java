@@ -1,4 +1,4 @@
-package com.excilys.android.formation.chatlite;
+package com.excilys.android.formation.chatlite.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,18 +8,17 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.excilys.android.formation.chatlite.tasks.ParlezVousTask;
+import com.excilys.android.formation.chatlite.R;
+import com.excilys.android.formation.chatlite.tasks.LogInTask;
 
-public class ParlezVousActivity extends AppCompatActivity {
-    public static final String PREFS_NAME = "MyPrefsFile";
+public class LogInActivity extends AppCompatActivity {
     public final static String EXTRA_USERNAME = "com.excilys.android.formation.chatlite.USERNAME";
     public final static String EXTRA_PASSWORD = "com.excilys.android.formation.chatlite.PASSWORD";
 
-    private final String TAG = ParlezVousActivity.class.getSimpleName();
+    SharedPreferences settings = null;
+
     private EditText usernameField;
     private EditText passwordField;
-
-    SharedPreferences settings = null;
 
 
     String user = null;
@@ -31,7 +30,7 @@ public class ParlezVousActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 //        Log.i(TAG, "onCreate");
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_parlez_vous);
+        setContentView(R.layout.activity_log_in);
         // Restore preferences
         settings = getPreferences(MODE_PRIVATE);
         this.silentMode = settings.getBoolean("silentMode", false);
@@ -43,19 +42,24 @@ public class ParlezVousActivity extends AppCompatActivity {
         this.passwordField.setText(pass);
     }
 
-    public void Send(View v) {
+    /**
+     * Sends a message to the server if and only if the message's not empty.
+     *
+     * @param v
+     */
+    public void send(View v) {
         boolean isValid = isValid();
         if (isValid) {
             user = this.usernameField.getText().toString();
             pass = this.passwordField.getText().toString();
-            ParlezVousTask pvt = new ParlezVousTask(this);
+            LogInTask pvt = new LogInTask(this);
             boolean exists = false;
             try {
                 exists = pvt.execute(user, pass).get().equals("true") ? true : false;
             } catch (Exception e) {
             }
             if (exists) {
-                Intent intent = new Intent(this, NavActivity.class);
+                Intent intent = new Intent(this, MainMenuActivity.class);
                 intent.putExtra(EXTRA_USERNAME, user);
                 intent.putExtra(EXTRA_PASSWORD, pass);
                 startActivity(intent);
@@ -68,15 +72,23 @@ public class ParlezVousActivity extends AppCompatActivity {
         }
     }
 
-    public void Clear(View v) {
-        this.user = settings.getString("username", "Name");
-        this.pass = settings.getString("password", "");
-        this.usernameField = (EditText) findViewById(R.id.editTextName);
-        this.passwordField = (EditText) findViewById(R.id.editTextPassword);
+    /**
+     * Resets the fields to their default value.
+     *
+     * @param v
+     */
+    public void reset(View v) {
+        this.user = "Name";
+        this.pass = "";
         this.usernameField.setText(user);
         this.passwordField.setText(pass);
     }
 
+    /**
+     * Checks whether the fields are valid to start a connection (i.e. not empty).
+     *
+     * @return true if the params are valid, false else
+     */
     private boolean isValid() {
         String s = this.usernameField.getText().toString();
         if (s.equals("")) {

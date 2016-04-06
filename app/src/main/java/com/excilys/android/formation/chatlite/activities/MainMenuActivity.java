@@ -1,9 +1,7 @@
-package com.excilys.android.formation.chatlite;
+package com.excilys.android.formation.chatlite.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -11,16 +9,21 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
-public class NavActivity extends AppCompatActivity {
+import com.excilys.android.formation.chatlite.R;
+
+public class MainMenuActivity extends AppCompatActivity {
     String user;
     String pass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nav);
+        setContentView(R.layout.activity_main_menu);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        // Sets the toolbar title to "Main Menu"
         if(toolbar != null) {
             setSupportActionBar(toolbar);
             getSupportActionBar().setTitle("Main menu");
@@ -28,14 +31,16 @@ public class NavActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
+        // Gets the username and password
         Intent intent = getIntent();
-        this.user = intent.getStringExtra(ParlezVousActivity.EXTRA_USERNAME);
-        this.pass = intent.getStringExtra(ParlezVousActivity.EXTRA_PASSWORD);
+        this.user = intent.getStringExtra(LogInActivity.EXTRA_USERNAME);
+        this.pass = intent.getStringExtra(LogInActivity.EXTRA_PASSWORD);
 
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        // Loads the menu
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.logout, menu);
         return true;
@@ -53,19 +58,31 @@ public class NavActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Starts the ViewMessages activity
+     * @param v the view
+     */
     public void viewMessages(View v){
         Intent intent = new Intent(this, ViewMessagesActivity.class);
         launch(intent);
     }
 
+    /**
+     * Starts the SendMessage activity
+     * @param v the view
+     */
     public void sendMessage(View v){
         Intent intent = new Intent(this, SendMessageActivity.class);
         launch(intent);
     }
 
+    /**
+     * Starts the activity after the username and password are input
+     * @param intent the intent to launch
+     */
     private void launch(Intent intent) {
-        intent.putExtra(ParlezVousActivity.EXTRA_USERNAME, user);
-        intent.putExtra(ParlezVousActivity.EXTRA_PASSWORD, pass);
+        intent.putExtra(LogInActivity.EXTRA_USERNAME, user);
+        intent.putExtra(LogInActivity.EXTRA_PASSWORD, pass);
         startActivity(intent);
     }
 }
