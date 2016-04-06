@@ -20,7 +20,7 @@ public class MessagesMapper {
         for (String str : message.split(";")) {
             String[] elements = str.split(":");
             if (elements.length == 2) {
-                HashMap<String, String> tmp = new HashMap<>();
+                HashMap<String, String> tmp = new HashMap<>(2);
                 tmp.put("name", elements[0]);
                 tmp.put("message", elements[1]);
                 list.add(0, tmp);

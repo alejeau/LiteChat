@@ -1,16 +1,6 @@
 package com.excilys.android.formation.chatlite.tasks;
 
-import android.widget.ProgressBar;
-
-import com.excilys.android.formation.chatlite.activities.LogInActivity;
-import com.excilys.android.formation.chatlite.R;
 import com.excilys.android.formation.chatlite.connection.RestConnection;
-import com.excilys.android.formation.chatlite.tools.InputStreamToString;
-
-import java.io.BufferedInputStream;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 
 public class ViewMessagesTask extends android.os.AsyncTask<String, Void, String> {
     String result = null;
@@ -22,7 +12,8 @@ public class ViewMessagesTask extends android.os.AsyncTask<String, Void, String>
 
     @Override
     protected String doInBackground(String... params) {
-        this.result = RestConnection.getMessages(params[0], params[1]);
+        RestConnection rc = RestConnection.INSTANCE;
+        this.result = rc.getMessages(params[0], params[1]);
         return this.result;
     }
 

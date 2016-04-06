@@ -11,6 +11,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
 import com.excilys.android.formation.chatlite.R;
+import com.excilys.android.formation.chatlite.mappers.JsonMapper;
 import com.excilys.android.formation.chatlite.mappers.MessagesMapper;
 import com.excilys.android.formation.chatlite.tasks.ViewMessagesTask;
 
@@ -56,14 +57,15 @@ public class ViewMessagesActivity extends AppCompatActivity {
      * Refreshes the list of messages
      */
     public void refresh() {
-        String message = null;
+        String messages = null;
+        String limit = "100", offset = "0";
         try {
-            message = new ViewMessagesTask().execute(user, pass).get();
+            messages = new ViewMessagesTask().execute(limit, offset).get();
         } catch (Exception e) {
         }
 
         // Maps the message String into a ArrayList<HashMap<String, String>>
-        ArrayList<HashMap<String, String>> list = MessagesMapper.map(message);
+        ArrayList<HashMap<String, String>> list = JsonMapper.mapMessages(messages);
 
         // Displays the messages in a ListAdapter
         String[] orga = new String[]{"name", "message"};

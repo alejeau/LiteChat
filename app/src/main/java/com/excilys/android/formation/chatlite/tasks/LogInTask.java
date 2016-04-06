@@ -6,18 +6,15 @@ import android.widget.ProgressBar;
 import com.excilys.android.formation.chatlite.activities.LogInActivity;
 import com.excilys.android.formation.chatlite.R;
 import com.excilys.android.formation.chatlite.connection.RestConnection;
-import com.excilys.android.formation.chatlite.tools.InputStreamToString;
-
-import java.io.BufferedInputStream;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import com.excilys.android.formation.chatlite.mappers.JsonMapper;
 
 
-public class LogInTask extends android.os.AsyncTask<String, Integer, String> {
+public class LogInTask extends android.os.AsyncTask<String, Integer, Boolean> {
+    private final String TAG = LogInTask.class.getSimpleName();
+
     protected LogInActivity activity;
     protected ProgressBar loadingWheel;
-    String result = null;
+    Boolean result = null;
     String textUrl = null;
 
     LogInTask() {}
@@ -33,17 +30,25 @@ public class LogInTask extends android.os.AsyncTask<String, Integer, String> {
     }
 
     @Override
-    protected String doInBackground(String... params) {
-        this.result = RestConnection.isValidUser(params[0], params[1]);
-        return this.result;
+    protected Boolean doInBackground(String... params) {
+        RestConnection rc = RestConnection.INSTANCE;
+        String tmp = rc.isValidUser(params[0], params[1]);
+        if (!tmp.equals("")) {
+            tmp = JsonMapper.mapLogIn(tmp, "status");
+            if (tmp.equals("200")) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     @Override
-    protected void onPostExecute(String result) {
+    protected void onPostExecute(Boolean result) {
         this.loadingWheel.setVisibility(View.GONE);
     }
 
-    public String getResult() {
+    public Boolean getResult() {
         return this.result;
     }
 

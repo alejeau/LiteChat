@@ -55,7 +55,7 @@ public class LogInActivity extends AppCompatActivity {
             LogInTask pvt = new LogInTask(this);
             boolean exists = false;
             try {
-                exists = pvt.execute(user, pass).get().equals("true") ? true : false;
+                exists = pvt.execute(user, pass).get();
             } catch (Exception e) {
             }
             if (exists) {
