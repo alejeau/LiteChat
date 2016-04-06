@@ -12,7 +12,6 @@ import android.widget.SimpleAdapter;
 
 import com.excilys.android.formation.chatlite.R;
 import com.excilys.android.formation.chatlite.mappers.JsonMapper;
-import com.excilys.android.formation.chatlite.mappers.MessagesMapper;
 import com.excilys.android.formation.chatlite.tasks.ViewMessagesTask;
 
 import java.util.ArrayList;
@@ -58,7 +57,7 @@ public class ViewMessagesActivity extends AppCompatActivity {
      */
     public void refresh() {
         String messages = null;
-        String limit = "100", offset = "0";
+        String limit = "1000", offset = "0";
         try {
             messages = new ViewMessagesTask().execute(limit, offset).get();
         } catch (Exception e) {

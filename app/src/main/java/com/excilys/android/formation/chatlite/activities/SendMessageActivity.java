@@ -55,9 +55,9 @@ public class SendMessageActivity extends AppCompatActivity {
         String message = et.getText().toString();
         if (!message.equals("")) {
             try {
-                message = URLEncoder.encode(message, "UTF-8");
-                message = message.replace("+", "%20");
-                new SendMessageTask().execute(user, pass, message).get();
+//                message = URLEncoder.encode(message, "UTF-8");
+//                message = message.replace("+", "%20");
+                new SendMessageTask().execute(message).get();
             } catch (Exception e) {
             }
             finish();

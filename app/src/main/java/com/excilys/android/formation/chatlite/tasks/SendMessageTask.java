@@ -14,7 +14,8 @@ public class SendMessageTask extends android.os.AsyncTask<String, Integer, Void>
 
     @Override
     protected Void doInBackground(String... params) {
-//        RestConnection.sendMessage(params[0], params[1], params[2]);
+        RestConnection rc = RestConnection.INSTANCE;
+        rc.sendMessage(params[0]);
         return null;
     }
 
