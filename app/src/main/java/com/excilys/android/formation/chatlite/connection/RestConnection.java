@@ -3,21 +3,25 @@ package com.excilys.android.formation.chatlite.connection;
 import android.util.Log;
 
 import com.excilys.android.formation.chatlite.mappers.MessageMapper;
+import com.excilys.android.formation.chatlite.model.Message;
 import com.excilys.android.formation.chatlite.tools.InputStreamToString;
 
 import java.io.BufferedInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStreamWriter;
 import java.net.Authenticator;
 import java.net.HttpURLConnection;
+import java.net.InetAddress;
 import java.net.PasswordAuthentication;
 import java.net.URL;
+import java.net.UnknownHostException;
 
 public enum RestConnection {
     INSTANCE;
 
-        private final String TAG = RestConnection.class.getSimpleName();
-    private static final String ACCESS_URL = "https://training.loicortola.com/chat-rest/2.0/";
+    private static final String TAG = RestConnection.class.getSimpleName();
+    private static final String ACCESS_URL = "https://training.loicortola.com/chat-rest/2.0";
 
     private String user;
     private String pass;
@@ -42,14 +46,15 @@ public enum RestConnection {
         URL url = null;
         HttpURLConnection urlConnection = null;
         String res = "";
-
+        InputStream in = null;
         try {
             url = new URL(textUrl);
             urlConnection = (HttpURLConnection) url.openConnection();
-            InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+            in = new BufferedInputStream(urlConnection.getInputStream());
             res = InputStreamToString.convert(in);
         } catch (Exception e) {
         } finally {
+            closeInputStream(in);
             urlConnection.disconnect();
         }
 
@@ -76,35 +81,56 @@ public enum RestConnection {
         return res;
     }
 
-    public void sendMessage(String message) {
+    public void sendMessage(Message message) {
         String textUrl = ACCESS_URL + "/messages";
         URL url = null;
         HttpURLConnection urlConnection = null;
-
+        InputStream in = null;
         try {
-            Log.d(TAG, "dibug 0");
             url = new URL(textUrl);
-            Log.d(TAG, "dibug 1");
             urlConnection = (HttpURLConnection) url.openConnection();
-            Log.d(TAG, "dibug 2");
             urlConnection.setRequestMethod("POST");
-            Log.d(TAG, "dibug 3");
+            urlConnection.setRequestProperty("Content-Type", "application/json");
             OutputStreamWriter writer = new OutputStreamWriter(urlConnection.getOutputStream());
-            Log.d(TAG, "dibug 6");
-            writer.write(MessageMapper.toJSONObject(this.user, message).toString());
-            Log.d(TAG, "dibug 7");
+            writer.write(MessageMapper.toJSONObject(message).toString());
             writer.flush();
-            Log.d(TAG, "dibug 8");
             writer.close();
-            Log.d(TAG, "dibug 9");
-            InputStream in = urlConnection.getInputStream();
-            Log.d(TAG, "dibug 10");
+            urlConnection.connect();
+            in = urlConnection.getErrorStream();
             String res = InputStreamToString.convert(in);
             Log.d(TAG, "res = " + res);
         } catch (Exception e) {
-            Log.d(TAG, e.getMessage());
+            Log.e(TAG, e.getMessage());
+            e.printStackTrace();
         } finally {
-            urlConnection.disconnect();
+            closeInputStream(in);
+            if (urlConnection != null) {
+                urlConnection.disconnect();
+            }
+        }
+    }
+
+    public boolean checkOnlineAvailability(){
+        boolean available = false;
+        try {
+            available = InetAddress.getByName(ACCESS_URL).isReachable(30);
+        } catch (UnknownHostException e) {
+            Log.e(TAG, e.getMessage());
+        } catch (IOException e) {
+            Log.e(TAG, e.getMessage());
+        }
+        return available;
+    }
+
+    private static void closeInputStream(InputStream in) {
+        try {
+            if (in != null) {
+                in.close();
+            }
+        } catch (IOException e) {
+            Log.e(TAG, e.getMessage());
+        } finally {
+            in = null;
         }
     }
 

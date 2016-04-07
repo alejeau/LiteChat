@@ -4,14 +4,19 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.excilys.android.formation.chatlite.R;
 import com.excilys.android.formation.chatlite.tasks.LogInTask;
+import com.excilys.android.formation.chatlite.tasks.NetworkAvailabilityCheckTask;
+
+import java.util.concurrent.ExecutionException;
 
 public class LogInActivity extends AppCompatActivity {
+    private static final String TAG = LogInActivity.class.getSimpleName();
     public final static String EXTRA_USERNAME = "com.excilys.android.formation.chatlite.USERNAME";
     public final static String EXTRA_PASSWORD = "com.excilys.android.formation.chatlite.PASSWORD";
 
@@ -48,27 +53,39 @@ public class LogInActivity extends AppCompatActivity {
      * @param v
      */
     public void send(View v) {
-        boolean isValid = isValid();
-        if (isValid) {
-            user = this.usernameField.getText().toString();
-            pass = this.passwordField.getText().toString();
-            LogInTask pvt = new LogInTask(this);
-            boolean exists = false;
-            try {
-                exists = pvt.execute(user, pass).get();
-            } catch (Exception e) {
-            }
-            if (exists) {
-                Intent intent = new Intent(this, MainMenuActivity.class);
-                intent.putExtra(EXTRA_USERNAME, user);
-                intent.putExtra(EXTRA_PASSWORD, pass);
-                startActivity(intent);
+        Boolean networkAvailable = true;
+//        try {
+//            networkAvailable = new NetworkAvailabilityCheckTask().get();
+//        } catch (InterruptedException e) {
+//            Log.e(TAG, e.getMessage());
+//        } catch (ExecutionException e) {
+//            Log.e(TAG, e.getMessage());
+//        }
+        if (networkAvailable) {
+            boolean isValid = isValid();
+            if (isValid) {
+                user = this.usernameField.getText().toString();
+                pass = this.passwordField.getText().toString();
+                LogInTask pvt = new LogInTask(this);
+                boolean exists = false;
+                try {
+                    exists = pvt.execute(user, pass).get();
+                } catch (Exception e) {
+                }
+                if (exists) {
+                    Intent intent = new Intent(this, MainMenuActivity.class);
+                    intent.putExtra(EXTRA_USERNAME, user);
+                    intent.putExtra(EXTRA_PASSWORD, pass);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(this, "Invalid username/login!", Toast.LENGTH_SHORT).show();
+                }
             } else {
-                Toast.makeText(this, "Invalid username/login!", Toast.LENGTH_SHORT).show();
+                String s = "Please fill all the fields!";
+                Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
             }
         } else {
-            String s = "Please fill all the fields!";
-            Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "No server nor network available!", Toast.LENGTH_SHORT).show();
         }
     }
 
