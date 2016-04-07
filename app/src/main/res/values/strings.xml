@@ -13,6 +13,7 @@
     <string name="textFieldPassword"></string>
 
     <string name="buttonSend">Log in</string>
+    <string name="buttonRegister">Register</string>
     <string name="buttonClear">Reset</string>
 
     <string name="title_activity_navigation">NavigationActivity</string>

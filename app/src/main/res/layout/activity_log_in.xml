@@ -86,16 +86,25 @@
             android:text="@string/buttonClear"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="0.5"
+            android:layout_weight="0.3"
             android:onClick="reset"
             android:layout_gravity="left" />
+
+        <Button
+            android:id="@+id/buttonRegister"
+            android:text="@string/buttonRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3"
+            android:onClick="register"
+            android:layout_gravity="right" />
 
         <Button
             android:id="@+id/buttonSend"
             android:text="@string/buttonSend"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="0.5"
+            android:layout_weight="0.3"
             android:onClick="send"
             android:layout_gravity="right" />
     </LinearLayout>

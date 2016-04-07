@@ -7,9 +7,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/**
- * Created by excilys on 06/04/16.
- */
 public class JsonMapper {
 
     public static String mapLogIn(String response, String tag) {
@@ -23,6 +20,25 @@ public class JsonMapper {
             e.printStackTrace();
         }
         return res;
+    }
+
+    public static boolean mapStatus(String response) {
+        JSONObject reader = null;
+        String res = "";
+        boolean ok = false;
+
+        try {
+            reader = new JSONObject(response);
+            res = reader.getString("status");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        if (res.equals("200")){
+            ok = true;
+        }
+
+        return ok;
     }
 
     /**
@@ -47,21 +63,6 @@ public class JsonMapper {
 
         if (ja != null) {
         }
-
-
-
-
-
-//        for (String str : message.split(";")) {
-//            String[] elements = str.split(":");
-//            if (elements.length == 2) {
-//                HashMap<String, String> tmp = new HashMap<>();
-//                tmp.put("name", elements[0]);
-//                tmp.put("message", elements[1]);
-//                list.add(0, tmp);
-//            }
-//        }
-
         return list;
     }
 

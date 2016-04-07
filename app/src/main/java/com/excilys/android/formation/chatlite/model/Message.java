@@ -107,4 +107,28 @@ public class Message {
     public void setAttachment(String attachment) {
         this.attachment = attachment;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Message message = (Message) o;
+
+        if (uuid != null ? !uuid.equals(message.uuid) : message.uuid != null) return false;
+        if (author != null ? !author.equals(message.author) : message.author != null) return false;
+        if (content != null ? !content.equals(message.content) : message.content != null)
+            return false;
+        return !(attachment != null ? !attachment.equals(message.attachment) : message.attachment != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = uuid != null ? uuid.hashCode() : 0;
+        result = 31 * result + (author != null ? author.hashCode() : 0);
+        result = 31 * result + (content != null ? content.hashCode() : 0);
+        result = 31 * result + (attachment != null ? attachment.hashCode() : 0);
+        return result;
+    }
 }

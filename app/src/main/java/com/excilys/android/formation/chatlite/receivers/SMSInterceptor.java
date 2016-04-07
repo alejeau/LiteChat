@@ -6,8 +6,11 @@ import android.content.Intent;
 import android.provider.Telephony;
 import android.widget.Toast;
 
-public class SMSReceiver extends BroadcastReceiver {
+public class SMSInterceptor extends BroadcastReceiver {
     private final String ACTION_RECEIVE_SMS = "android.provider.Telephony.Sms.Intents.SMS_RECEIVED_ACTION";
+
+    public SMSInterceptor() {
+    }
 
     @Override
     public void onReceive(Context context, Intent intent) {

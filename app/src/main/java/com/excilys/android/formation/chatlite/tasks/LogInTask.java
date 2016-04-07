@@ -17,7 +17,7 @@ public class LogInTask extends android.os.AsyncTask<String, Integer, Boolean> {
     Boolean result = null;
     String textUrl = null;
 
-    LogInTask() {}
+    public LogInTask() {}
 
     public LogInTask(LogInActivity activity) {
         this.activity = activity;

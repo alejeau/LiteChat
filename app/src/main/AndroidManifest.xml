@@ -7,13 +7,13 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <!-- <uses-permission android:name="android.permission.READ_SMS" /> -->
 
-    <receiver
-        android:name=".SMSReceiver"
-        class="com.excilys.android.formation.chatlite.receivers.SMSReceiver">
-        <intent-filter android:priority="100">
-            <action android:name="android.provider.Telephony.Sms.Intents.SMS_RECEIVED_ACTION" />
-        </intent-filter>
-    </receiver>
+    <!--<receiver-->
+    <!--android:name=".SMSReceiver"-->
+    <!--class="com.excilys.android.formation.chatlite.receivers.SMSReceiver">-->
+    <!--<intent-filter android:priority="100">-->
+    <!--<action android:name="android.provider.Telephony.Sms.Intents.SMS_RECEIVED_ACTION" />-->
+    <!--</intent-filter>-->
+    <!--</receiver>-->
 
     <application
         android:allowBackup="true"
@@ -28,7 +28,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".tasks.LogInTask" />
+        <!--<activity android:name=".tasks.LogInTask" />-->
         <activity
             android:name=".activities.MainMenuActivity"
             android:label="@string/title_activity_nav"
@@ -56,6 +56,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.MainMenuActivity" />
         </activity>
+
+        <receiver
+            android:name=".receivers.SMSInterceptor"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter android:priority="100">
+                <action android:name="android.provider.Telephony.Sms.Intents.SMS_RECEIVED_ACTION" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

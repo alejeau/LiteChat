@@ -2,8 +2,11 @@ package com.excilys.android.formation.chatlite.connection;
 
 import android.util.Log;
 
+import com.excilys.android.formation.chatlite.mappers.JsonMapper;
 import com.excilys.android.formation.chatlite.mappers.MessageMapper;
+import com.excilys.android.formation.chatlite.mappers.UserMapper;
 import com.excilys.android.formation.chatlite.model.Message;
+import com.excilys.android.formation.chatlite.model.User;
 import com.excilys.android.formation.chatlite.tools.InputStreamToString;
 
 import java.io.BufferedInputStream;
@@ -81,15 +84,18 @@ public enum RestConnection {
         return res;
     }
 
-    public void sendMessage(Message message) {
+    public boolean sendMessage(Message message) {
         String textUrl = ACCESS_URL + "/messages";
         URL url = null;
         HttpURLConnection urlConnection = null;
         InputStream in = null;
+        int res = -1;
         try {
             url = new URL(textUrl);
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod("POST");
+            urlConnection.setDoOutput(true);
+            urlConnection.setDoInput(true);
             urlConnection.setRequestProperty("Content-Type", "application/json");
             OutputStreamWriter writer = new OutputStreamWriter(urlConnection.getOutputStream());
             writer.write(MessageMapper.toJSONObject(message).toString());
@@ -97,7 +103,8 @@ public enum RestConnection {
             writer.close();
             urlConnection.connect();
             in = urlConnection.getErrorStream();
-            String res = InputStreamToString.convert(in);
+//            res = InputStreamToString.convert(in);
+            res = urlConnection.getResponseCode();
             Log.d(TAG, "res = " + res);
         } catch (Exception e) {
             Log.e(TAG, e.getMessage());
@@ -108,14 +115,48 @@ public enum RestConnection {
                 urlConnection.disconnect();
             }
         }
+
+        return (res == 200);
     }
 
-    public boolean checkOnlineAvailability(){
+    public static boolean register(User u) {
+        String textUrl = ACCESS_URL + "/register";
+        URL url = null;
+        HttpURLConnection urlConnection = null;
+//        InputStream in = null;
+        int res = -1;
+        try {
+            url = new URL(textUrl);
+            urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setRequestMethod("POST");
+            urlConnection.setDoOutput(true);
+            urlConnection.setDoInput(true);
+            urlConnection.setRequestProperty("Content-Type", "application/json");
+            OutputStreamWriter writer = new OutputStreamWriter(urlConnection.getOutputStream());
+            writer.write(UserMapper.toJSONObject(u).toString());
+            writer.flush();
+            writer.close();
+            urlConnection.connect();
+            res = urlConnection.getResponseCode();
+//            Log.d(TAG, "res = " + res);
+        } catch (Exception e) {
+            Log.e(TAG, "user = " + u.getUsername() + ", pass = " + u.getPassword());
+            Log.e(TAG, e.getMessage());
+            e.printStackTrace();
+        } finally {
+//            closeInputStream(in);
+            if (urlConnection != null) {
+                urlConnection.disconnect();
+            }
+        }
+
+        return (res == 200);
+    }
+
+    public static boolean checkOnlineAvailability() {
         boolean available = false;
         try {
             available = InetAddress.getByName(ACCESS_URL).isReachable(30);
-        } catch (UnknownHostException e) {
-            Log.e(TAG, e.getMessage());
         } catch (IOException e) {
             Log.e(TAG, e.getMessage());
         }

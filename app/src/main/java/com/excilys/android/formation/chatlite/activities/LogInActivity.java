@@ -10,8 +10,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.excilys.android.formation.chatlite.R;
+import com.excilys.android.formation.chatlite.model.User;
 import com.excilys.android.formation.chatlite.tasks.LogInTask;
 import com.excilys.android.formation.chatlite.tasks.NetworkAvailabilityCheckTask;
+import com.excilys.android.formation.chatlite.tasks.RegisterTask;
 
 import java.util.concurrent.ExecutionException;
 
@@ -73,10 +75,7 @@ public class LogInActivity extends AppCompatActivity {
                 } catch (Exception e) {
                 }
                 if (exists) {
-                    Intent intent = new Intent(this, MainMenuActivity.class);
-                    intent.putExtra(EXTRA_USERNAME, user);
-                    intent.putExtra(EXTRA_PASSWORD, pass);
-                    startActivity(intent);
+                    startMainMenuActivity();
                 } else {
                     Toast.makeText(this, "Invalid username/login!", Toast.LENGTH_SHORT).show();
                 }
@@ -118,6 +117,34 @@ public class LogInActivity extends AppCompatActivity {
         }
 
         return true;
+    }
+
+    public void register(View v){
+        user = this.usernameField.getText().toString();
+        pass = this.passwordField.getText().toString();
+        User u = new User(this.user, this.pass);
+        boolean success = false;
+        try {
+            success = new RegisterTask().execute(u).get();
+        } catch (InterruptedException e) {
+            Log.e(TAG, e.getMessage());
+        } catch (ExecutionException e) {
+            Log.e(TAG, e.getMessage());
+        }
+
+        String info = "Username already taken!";
+        if (success) {
+            info = "Successful registration!";
+            startMainMenuActivity();
+        }
+        Toast.makeText(this, info, Toast.LENGTH_SHORT).show();
+    }
+
+    public void startMainMenuActivity() {
+        Intent intent = new Intent(this, MainMenuActivity.class);
+        intent.putExtra(EXTRA_USERNAME, user);
+        intent.putExtra(EXTRA_PASSWORD, pass);
+        startActivity(intent);
     }
 
     @Override
