@@ -5,8 +5,7 @@ import android.widget.ProgressBar;
 
 import com.excilys.android.formation.chatlite.activities.LogInActivity;
 import com.excilys.android.formation.chatlite.R;
-import com.excilys.android.formation.chatlite.connection.RestConnection;
-import com.excilys.android.formation.chatlite.mappers.JsonMapper;
+import com.excilys.android.formation.chatlite.connection.OkConnection;
 import com.excilys.android.formation.chatlite.model.User;
 
 
@@ -32,16 +31,9 @@ public class LogInTask extends android.os.AsyncTask<User, Integer, Boolean> {
 
     @Override
     protected Boolean doInBackground(User... params) {
-        RestConnection rc = RestConnection.INSTANCE;
-        String tmp = rc.isValidUser(params[0]);
-        if (!tmp.equals("")) {
-            tmp = JsonMapper.mapLogIn(tmp, "status");
-            if (tmp.equals("200")) {
-                return true;
-            }
-        }
-
-        return false;
+        OkConnection ok = OkConnection.INSTANCE;
+        boolean success = ok.isValidUser(params[0]);
+        return success;
     }
 
     @Override

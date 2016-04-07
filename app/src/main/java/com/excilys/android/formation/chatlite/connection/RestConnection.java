@@ -2,7 +2,6 @@ package com.excilys.android.formation.chatlite.connection;
 
 import android.util.Log;
 
-import com.excilys.android.formation.chatlite.mappers.JsonMapper;
 import com.excilys.android.formation.chatlite.mappers.MessageMapper;
 import com.excilys.android.formation.chatlite.mappers.UserMapper;
 import com.excilys.android.formation.chatlite.model.Message;
@@ -18,7 +17,6 @@ import java.net.HttpURLConnection;
 import java.net.InetAddress;
 import java.net.PasswordAuthentication;
 import java.net.URL;
-import java.net.UnknownHostException;
 
 public enum RestConnection {
     INSTANCE;
@@ -69,8 +67,6 @@ public enum RestConnection {
 
     public String getMessages(String limit, String offset) {
         String textUrl = ACCESS_URL + "/messages?limit=" + limit + "&offset=" + offset;
-//        Log.i(TAG, "URL = " + textUrl);
-//        String textUrl = ACCESS_URL + "/messages?limit=100&offset=0";
         URL url = null;
         HttpURLConnection urlConnection = null;
         String res = "";
