@@ -12,7 +12,6 @@ import android.widget.Toast;
 import com.excilys.android.formation.chatlite.R;
 import com.excilys.android.formation.chatlite.model.User;
 import com.excilys.android.formation.chatlite.tasks.LogInTask;
-import com.excilys.android.formation.chatlite.tasks.NetworkAvailabilityCheckTask;
 import com.excilys.android.formation.chatlite.tasks.RegisterTask;
 
 import java.util.concurrent.ExecutionException;
@@ -21,15 +20,16 @@ public class LogInActivity extends AppCompatActivity {
     private static final String TAG = LogInActivity.class.getSimpleName();
     public final static String EXTRA_USERNAME = "com.excilys.android.formation.chatlite.USERNAME";
     public final static String EXTRA_PASSWORD = "com.excilys.android.formation.chatlite.PASSWORD";
+    public final static String EXTRA_USER = "com.excilys.android.formation.chatlite.USER";
 
     SharedPreferences settings = null;
 
     private EditText usernameField;
     private EditText passwordField;
 
-
-    String user = null;
-    String pass = null;
+    private User user = null;
+//    private String username = null;
+//    private String password = null;
 
     boolean silentMode;
 
@@ -41,12 +41,13 @@ public class LogInActivity extends AppCompatActivity {
         // Restore preferences
         settings = getPreferences(MODE_PRIVATE);
         this.silentMode = settings.getBoolean("silentMode", false);
-        this.user = settings.getString(EXTRA_USERNAME, "Name");
-        this.pass = settings.getString(EXTRA_PASSWORD, "");
+        String username = settings.getString(EXTRA_USERNAME, "Name");
+        String password = settings.getString(EXTRA_PASSWORD, "");
+        this.user = new User(username, password);
         this.usernameField = (EditText) findViewById(R.id.editTextName);
         this.passwordField = (EditText) findViewById(R.id.editTextPassword);
-        this.usernameField.setText(user);
-        this.passwordField.setText(pass);
+        this.usernameField.setText(username);
+        this.passwordField.setText(password);
     }
 
     /**
@@ -66,12 +67,11 @@ public class LogInActivity extends AppCompatActivity {
         if (networkAvailable) {
             boolean isValid = isValid();
             if (isValid) {
-                user = this.usernameField.getText().toString();
-                pass = this.passwordField.getText().toString();
+                updateUser();
                 LogInTask pvt = new LogInTask(this);
                 boolean exists = false;
                 try {
-                    exists = pvt.execute(user, pass).get();
+                    exists = pvt.execute(user).get();
                 } catch (Exception e) {
                 }
                 if (exists) {
@@ -94,10 +94,33 @@ public class LogInActivity extends AppCompatActivity {
      * @param v
      */
     public void reset(View v) {
-        this.user = "Name";
-        this.pass = "";
-        this.usernameField.setText(user);
-        this.passwordField.setText(pass);
+        user = new User("Name", "");
+        this.usernameField.setText(user.getUsername());
+        this.passwordField.setText(user.getPassword());
+    }
+
+    public void register(View v) {
+
+        if (!isValid()) {
+            Toast.makeText(this, "Please fill all the fields!", Toast.LENGTH_SHORT).show();
+        } else {
+            updateUser();
+            boolean success = false;
+            try {
+                success = new RegisterTask().execute(this.user).get();
+            } catch (InterruptedException e) {
+                Log.e(TAG, e.getMessage());
+            } catch (ExecutionException e) {
+                Log.e(TAG, e.getMessage());
+            }
+
+            String info = "Username already taken!";
+            if (success) {
+                info = "Successful registration!";
+                startMainMenuActivity();
+            }
+            Toast.makeText(this, info, Toast.LENGTH_SHORT).show();
+        }
     }
 
     /**
@@ -119,32 +142,16 @@ public class LogInActivity extends AppCompatActivity {
         return true;
     }
 
-    public void register(View v){
-        user = this.usernameField.getText().toString();
-        pass = this.passwordField.getText().toString();
-        User u = new User(this.user, this.pass);
-        boolean success = false;
-        try {
-            success = new RegisterTask().execute(u).get();
-        } catch (InterruptedException e) {
-            Log.e(TAG, e.getMessage());
-        } catch (ExecutionException e) {
-            Log.e(TAG, e.getMessage());
-        }
-
-        String info = "Username already taken!";
-        if (success) {
-            info = "Successful registration!";
-            startMainMenuActivity();
-        }
-        Toast.makeText(this, info, Toast.LENGTH_SHORT).show();
-    }
-
     public void startMainMenuActivity() {
         Intent intent = new Intent(this, MainMenuActivity.class);
-        intent.putExtra(EXTRA_USERNAME, user);
-        intent.putExtra(EXTRA_PASSWORD, pass);
+        intent.putExtra(EXTRA_USERNAME, user.getUsername());
+        intent.putExtra(EXTRA_PASSWORD, user.getPassword());
         startActivity(intent);
+    }
+
+    protected void updateUser(){
+        user.setUsername(this.usernameField.getText().toString());
+        user.setPassword(this.passwordField.getText().toString());
     }
 
     @Override
@@ -155,8 +162,8 @@ public class LogInActivity extends AppCompatActivity {
         // All objects are from android.context.Context
         SharedPreferences.Editor editor = settings.edit();
         editor.putBoolean("silentMode", this.silentMode);
-        editor.putString(EXTRA_USERNAME, user);
-        editor.putString(EXTRA_PASSWORD, pass);
+        editor.putString(EXTRA_USERNAME, user.getUsername());
+        editor.putString(EXTRA_PASSWORD, user.getPassword());
         // Commit the edits!
         editor.commit();
     }

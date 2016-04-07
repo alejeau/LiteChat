@@ -7,9 +7,10 @@ import com.excilys.android.formation.chatlite.activities.LogInActivity;
 import com.excilys.android.formation.chatlite.R;
 import com.excilys.android.formation.chatlite.connection.RestConnection;
 import com.excilys.android.formation.chatlite.mappers.JsonMapper;
+import com.excilys.android.formation.chatlite.model.User;
 
 
-public class LogInTask extends android.os.AsyncTask<String, Integer, Boolean> {
+public class LogInTask extends android.os.AsyncTask<User, Integer, Boolean> {
     private final String TAG = LogInTask.class.getSimpleName();
 
     protected LogInActivity activity;
@@ -30,9 +31,9 @@ public class LogInTask extends android.os.AsyncTask<String, Integer, Boolean> {
     }
 
     @Override
-    protected Boolean doInBackground(String... params) {
+    protected Boolean doInBackground(User... params) {
         RestConnection rc = RestConnection.INSTANCE;
-        String tmp = rc.isValidUser(params[0], params[1]);
+        String tmp = rc.isValidUser(params[0]);
         if (!tmp.equals("")) {
             tmp = JsonMapper.mapLogIn(tmp, "status");
             if (tmp.equals("200")) {

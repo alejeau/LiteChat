@@ -39,9 +39,10 @@ public enum RestConnection {
         this.pass = null;
     }
 
-    public String isValidUser(String user, String pass) {
-        this.user = user;
-        this.pass = pass;
+    public String isValidUser(User u) {
+        this.user = u.getUsername();
+        this.pass = u.getPassword();
+
         // We authenticate
         Authenticator.setDefault(new BasicAuthenticator(this.user, this.pass));
 
@@ -58,7 +59,9 @@ public enum RestConnection {
         } catch (Exception e) {
         } finally {
             closeInputStream(in);
-            urlConnection.disconnect();
+            if (urlConnection != null) {
+                urlConnection.disconnect();
+            }
         }
 
         return res;
