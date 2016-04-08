@@ -10,10 +10,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.excilys.android.formation.chatlite.R;
-import com.excilys.android.formation.chatlite.model.Message;
+import com.excilys.android.formation.chatlite.model.SimpleMessage;
 import com.excilys.android.formation.chatlite.tasks.SendMessageTask;
-
-import java.net.URLEncoder;
 
 public class SendMessageActivity extends AppCompatActivity {
     String user;
@@ -55,7 +53,7 @@ public class SendMessageActivity extends AppCompatActivity {
         EditText et = (EditText) findViewById(R.id.editTextSendMessage);
         String content = et.getText().toString();
         if (!content.equals("")) {
-            Message m = new Message(this.user, content);
+            SimpleMessage m = new SimpleMessage(this.user, content);
             try {
                 new SendMessageTask().execute(m);
             } catch (Exception e) {

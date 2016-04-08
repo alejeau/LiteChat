@@ -1,6 +1,5 @@
 package com.excilys.android.formation.chatlite.mappers;
 
-import com.excilys.android.formation.chatlite.model.Message;
 import com.excilys.android.formation.chatlite.model.User;
 
 import org.json.JSONException;

@@ -16,7 +16,6 @@
     <string name="buttonRegister">Register</string>
     <string name="buttonClear">Reset</string>
 
-    <string name="title_activity_navigation">NavigationActivity</string>
     <string name="title_activity_nav">NavActivity</string>
     <string name="title_activity_send_message">SendMessageActivity</string>
     <string name="title_activity_view_messages">ViewMessagesActivity</string>

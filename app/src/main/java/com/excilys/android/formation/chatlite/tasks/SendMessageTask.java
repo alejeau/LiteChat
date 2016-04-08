@@ -1,9 +1,9 @@
 package com.excilys.android.formation.chatlite.tasks;
 
 import com.excilys.android.formation.chatlite.connection.OkConnection;
-import com.excilys.android.formation.chatlite.model.Message;
+import com.excilys.android.formation.chatlite.model.SimpleMessage;
 
-public class SendMessageTask extends android.os.AsyncTask<Message, Void, Void> {
+public class SendMessageTask extends android.os.AsyncTask<SimpleMessage, Void, Void> {
 
     public SendMessageTask() {}
 
@@ -11,7 +11,7 @@ public class SendMessageTask extends android.os.AsyncTask<Message, Void, Void> {
     protected void onPreExecute() { }
 
     @Override
-    protected Void doInBackground(Message... params) {
+    protected Void doInBackground(SimpleMessage... params) {
         OkConnection.INSTANCE.sendMessage(params[0]);
         return null;
     }
