@@ -1,2 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
+
+    <item
+        jar="/home/excilys/AndroidStudioProjects/LiteChat/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="3c2fa7be5a4fd2fea126678bc78c2044b3a8c935">
+        <dex dex="/home/excilys/AndroidStudioProjects/LiteChat/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_452ec04369763c2f43fd8819bf75a92eb4663dcd/classes.dex" />
+    </item>
+
+</items>

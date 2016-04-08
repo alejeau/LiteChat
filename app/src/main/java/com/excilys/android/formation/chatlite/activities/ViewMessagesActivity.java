@@ -41,14 +41,14 @@ public class ViewMessagesActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                refresh();
-            }
-        });
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                refresh();
+//            }
+//        });
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();
         this.user = intent.getStringExtra(LogInActivity.EXTRA_USERNAME);
@@ -77,26 +77,28 @@ public class ViewMessagesActivity extends AppCompatActivity {
         int[] ids = new int[]{R.id.pseudo, R.id.textMessage};
         ListAdapter adapter = new SimpleAdapter(this, list, R.layout.row_list, orga, ids);
         listView.setAdapter(adapter);
+        listView.setSelection(list.size() - 1);
     }
 
 
 
-//    /**
-//     * Sends the message to the server.
-//     */
-//    public void fragmentSendMessage(View v) {
-//        EditText et = (EditText) findViewById(R.id.editTextFragmentSendMessage);
-//        String content = et.getText().toString();
-//        if (!content.equals("")) {
-//            SimpleMessage m = new SimpleMessage(this.user, content);
-//            try {
-//                new SendMessageTask().execute(m);
-//            } catch (Exception e) {
-//            }
-//            finish();
-//        } else {
-//            Toast.makeText(this, "Cannot send an empty message!", Toast.LENGTH_SHORT).show();
-//        }
-//    }
+    /**
+     * Sends the message to the server.
+     */
+    public void fragmentSendMessage(View v) {
+        EditText et = (EditText) findViewById(R.id.editTextFragment);
+        String content = et.getText().toString();
+        if (!content.equals("")) {
+            SimpleMessage m = new SimpleMessage(this.user, content);
+            try {
+                new SendMessageTask().execute(m);
+            } catch (Exception e) {
+            }
+            et.setText("");
+            refresh();
+        } else {
+            Toast.makeText(this, "Cannot send an empty message!", Toast.LENGTH_SHORT).show();
+        }
+    }
 
 }
