@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">LiteChat</string>
+    <string name="app_name" translatable="false">LiteChat</string>
     <string name="menuLogout">Log out</string>
 
     <string name="buttonViewMessages">View messages</string>
@@ -10,15 +10,17 @@
     <string name="textViewHeader">Connection form</string>
 
     <string name="textFieldUserName">Name</string>
-    <string name="textFieldPassword"></string>
+    <string name="textFieldPassword" translatable="false"></string>
 
     <string name="buttonSend">Log in</string>
     <string name="buttonRegister">Register</string>
-    <string name="buttonClear">Reset</string>
+    <string name="buttonClear" translatable="false">Reset</string>
 
     <string name="title_activity_nav">NavActivity</string>
     <string name="title_activity_send_message">SendMessageActivity</string>
     <string name="title_activity_view_messages">ViewMessagesActivity</string>
+
+    <string name="buttonUploadImage">Upload JPG/PNG</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

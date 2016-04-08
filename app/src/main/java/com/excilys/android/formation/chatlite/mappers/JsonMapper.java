@@ -1,5 +1,7 @@
 package com.excilys.android.formation.chatlite.mappers;
 
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -8,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class JsonMapper {
+    private static final String TAG = JsonMapper.class.getSimpleName();
 
     public static String mapLogIn(String response, String tag) {
         JSONObject reader = null;
@@ -56,6 +59,8 @@ public class JsonMapper {
             ja = new JSONArray(response);
             int len = ja.length();
             for (int i = 0; i < len; i++) {
+                JSONObject jso = ja.getJSONObject(i);
+//                Log.d(TAG, "dibug: jso = " + jso);
                 list.add(0, toHashMap(ja.getJSONObject(i)));
             }
         } catch (JSONException e) {
@@ -70,6 +75,7 @@ public class JsonMapper {
         HashMap<String, String> h = new HashMap<>(2);
         h.put("name", jso.getString("login"));
         h.put("message", jso.getString("message"));
+//        Log.d(TAG, "dibug: h = " + h.toString());
         return h;
     }
 

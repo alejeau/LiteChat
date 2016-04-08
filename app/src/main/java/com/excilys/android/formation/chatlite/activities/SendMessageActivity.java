@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -14,6 +15,7 @@ import com.excilys.android.formation.chatlite.model.SimpleMessage;
 import com.excilys.android.formation.chatlite.tasks.SendMessageTask;
 
 public class SendMessageActivity extends AppCompatActivity {
+    private static final String TAG = SendMessageActivity.class.getSimpleName();
     String user;
     String pass;
 
@@ -25,7 +27,7 @@ public class SendMessageActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         // Sets the toolbar title to "Send message"
-        if(toolbar != null) {
+        if (toolbar != null) {
             setSupportActionBar(toolbar);
             getSupportActionBar().setTitle("Send message");
             getSupportActionBar().setHomeButtonEnabled(true);
@@ -62,7 +64,11 @@ public class SendMessageActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this, "Cannot send an empty message!", Toast.LENGTH_SHORT).show();
         }
+    }
 
+    public void chosePicture(View v) {
+        Toast.makeText(this, "Not implemented yet!", Toast.LENGTH_SHORT).show();
+        Log.w(TAG, "Not implemented yet!");
     }
 
 }

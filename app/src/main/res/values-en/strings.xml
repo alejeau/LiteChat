@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">LiteChat</string>
+    <string name="buttonClear" translatable="false">Reset</string>
+    <string name="buttonRegister">Register</string>
+    <string name="buttonSend">Log in</string>
+    <string name="buttonSendMessage">Send message</string>
+    <string name="buttonUploadImage">Upload JPG/PNG</string>
+    <string name="buttonViewMessages">View messages</string>
+    <string name="menuLogout">View messages</string>
+    <string name="textFieldPassword"></string>
+    <string name="textFieldUserName">Name</string>
+    <string name="textViewHeader">Connection form</string>
+    <string name="textViewPassword">Password</string>
+    <string name="textViewUserName">Username</string>
+    <string name="title_activity_nav">Main menu</string>
+    <string name="title_activity_send_message">Send message</string>
+    <string name="title_activity_view_messages">View messages</string>
+</resources>
