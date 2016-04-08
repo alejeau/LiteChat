@@ -4,22 +4,22 @@ package com.excilys.android.formation.chatlite.model;
  * Created by excilys on 07/04/16.
  */
 public class User {
-    String username = null;
+    String login = null;
     String password = null;
 
     public User() {}
 
-    public User(String username, String password) {
-        this.username = username;
+    public User(String login, String password) {
+        this.login = login;
         this.password = password;
     }
 
-    public String getUsername() {
-        return username;
+    public String getLogin() {
+        return login;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public String getPassword() {
@@ -37,7 +37,7 @@ public class User {
 
         User user = (User) o;
 
-        if (username != null ? !username.equals(user.username) : user.username != null)
+        if (login != null ? !login.equals(user.login) : user.login != null)
             return false;
         return !(password != null ? !password.equals(user.password) : user.password != null);
 
@@ -45,7 +45,7 @@ public class User {
 
     @Override
     public int hashCode() {
-        int result = username != null ? username.hashCode() : 0;
+        int result = login != null ? login.hashCode() : 0;
         result = 31 * result + (password != null ? password.hashCode() : 0);
         return result;
     }

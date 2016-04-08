@@ -20,7 +20,6 @@ public class LogInActivity extends AppCompatActivity {
     private static final String TAG = LogInActivity.class.getSimpleName();
     public final static String EXTRA_USERNAME = "com.excilys.android.formation.chatlite.USERNAME";
     public final static String EXTRA_PASSWORD = "com.excilys.android.formation.chatlite.PASSWORD";
-    public final static String EXTRA_USER = "com.excilys.android.formation.chatlite.USER";
 
     SharedPreferences settings = null;
 
@@ -95,7 +94,7 @@ public class LogInActivity extends AppCompatActivity {
      */
     public void reset(View v) {
         user = new User("Name", "");
-        this.usernameField.setText(user.getUsername());
+        this.usernameField.setText(user.getLogin());
         this.passwordField.setText(user.getPassword());
     }
 
@@ -117,7 +116,7 @@ public class LogInActivity extends AppCompatActivity {
             String info = "Username already taken!";
             if (success) {
                 info = "Successful registration!";
-                startMainMenuActivity();
+                send(v);
             }
             Toast.makeText(this, info, Toast.LENGTH_SHORT).show();
         }
@@ -144,13 +143,13 @@ public class LogInActivity extends AppCompatActivity {
 
     public void startMainMenuActivity() {
         Intent intent = new Intent(this, MainMenuActivity.class);
-        intent.putExtra(EXTRA_USERNAME, user.getUsername());
+        intent.putExtra(EXTRA_USERNAME, user.getLogin());
         intent.putExtra(EXTRA_PASSWORD, user.getPassword());
         startActivity(intent);
     }
 
     protected void updateUser(){
-        user.setUsername(this.usernameField.getText().toString());
+        user.setLogin(this.usernameField.getText().toString());
         user.setPassword(this.passwordField.getText().toString());
     }
 
@@ -162,7 +161,7 @@ public class LogInActivity extends AppCompatActivity {
         // All objects are from android.context.Context
         SharedPreferences.Editor editor = settings.edit();
         editor.putBoolean("silentMode", this.silentMode);
-        editor.putString(EXTRA_USERNAME, user.getUsername());
+        editor.putString(EXTRA_USERNAME, user.getLogin());
         editor.putString(EXTRA_PASSWORD, user.getPassword());
         // Commit the edits!
         editor.commit();

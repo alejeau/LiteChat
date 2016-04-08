@@ -21,10 +21,10 @@ import okhttp3.Route;
 
 public enum OkConnection {
     INSTANCE;
-    public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
     private static final String TAG = OkConnection.class.getSimpleName();
     private static final String ACCESS_URL = "https://training.loicortola.com/chat-rest/2.0";
+    public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
     private String user;
     private String pass;
@@ -55,7 +55,7 @@ public enum OkConnection {
     }
 
     public boolean isValidUser(User u) {
-        this.user = u.getUsername();
+        this.user = u.getLogin();
         this.pass = u.getPassword();
 
         // We authenticate
@@ -63,35 +63,34 @@ public enum OkConnection {
 
         String url = ACCESS_URL + "/connect";
         String res = getResult(url);
-        boolean success = JsonMapper.mapStatus(res);
-        return success;
+        return JsonMapper.mapStatus(res);
     }
 
     public String getMessages(String limit, String offset) {
         String url = ACCESS_URL + "/messages?limit=" + limit + "&offset=" + offset;
-        String res = getResult(url);
-        return res;
+        return getResult(url);
     }
 
     public boolean sendMessage(SimpleMessage message) {
         String url = ACCESS_URL + "/messages";
         String json = JacksonMapper.simpleMessageToJSONString(message);
         String res = sendRequest(url, json);
-        boolean success = JsonMapper.mapStatus(res);
-        return success;
+        return JsonMapper.mapStatus(res);
     }
 
     public boolean register(User u) {
+        client = new OkHttpClient();
         String url = ACCESS_URL + "/register";
         String json = JacksonMapper.userToJSONString(u);
         String res = sendRequest(url, json);
-        boolean success = JsonMapper.mapStatus(res);
-        return success;
+        return JsonMapper.mapStatus(res);
     }
 
     /**
-     * @param url
-     * @return
+     * Sends a GET request to a server.
+     *
+     * @param url the URL to reach to.
+     * @return the server's response as a JSON String.
      */
     private String getResult(String url) {
         String res = "";
@@ -110,6 +109,13 @@ public enum OkConnection {
         return res;
     }
 
+    /**
+     * Sends a POST request to a server.
+     *
+     * @param url the URL to reach to.
+     * @param jsonString the JSON object to send as a JSON String.
+     * @return the server's response as a JSON String.
+     */
     private String sendRequest(String url, String jsonString) {
         String res = "";
         Response response = null;
@@ -120,12 +126,6 @@ public enum OkConnection {
                 .build();
         try {
             response = client.newCall(request).execute();
-//            if (responseCount(response) >= 0) {
-//                Log.d(TAG, "dibug: resReq = \"" + jsonString + "\"");
-//                res = response.body().string();
-//                Log.d(TAG, "dibug: resReq = " + res);
-//                return res;
-//            }
             Log.d(TAG, "dibug: resReq = \"" + jsonString + "\"");
             res = response.body().string();
             Log.d(TAG, "dibug: resReq = " + res);
@@ -137,14 +137,11 @@ public enum OkConnection {
         return res;
     }
 
-    private static int responseCount(Response response) {
-        int result = 1;
-        while ((response = response.priorResponse()) != null) {
-            result++;
-        }
-        return result;
-    }
-
+    /**
+     * Checks whether the network and the website are available or not.
+     *
+     * @return true if available, false else.
+     */
     public static boolean checkOnlineAvailability() {
         boolean available = false;
         try {

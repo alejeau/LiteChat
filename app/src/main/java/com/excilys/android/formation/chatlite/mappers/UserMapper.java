@@ -12,7 +12,7 @@ public class UserMapper {
     public static JSONObject toJSONObject(User u) {
         JSONObject jso = new JSONObject();
         try {
-            jso.put("login", u.getUsername());
+            jso.put("login", u.getLogin());
             jso.put("password", u.getPassword());
         } catch (JSONException j) {
             jso = null;
