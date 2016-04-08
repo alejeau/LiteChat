@@ -8,7 +8,7 @@ import com.fasterxml.jackson.databind.jsontype.TypeSerializer;
 import java.io.IOException;
 import java.util.UUID;
 
-public class SimpleMessage {
+public class SimpleMessage implements JsonSerializable {
     protected UUID uuid = null;
     protected String login = null;
     protected String message = null;
@@ -102,5 +102,57 @@ public class SimpleMessage {
                 ", login='" + login + '\'' +
                 ", message='" + message + '\'' +
                 '}';
+    }
+
+    /**
+     * Serialization method called when no additional type information is
+     * to be included in serialization.
+     *
+     * @param gen
+     * @param serializers
+     */
+    @Override
+    public void serialize(JsonGenerator gen, SerializerProvider serializers) throws IOException {
+        startSerialize(gen);
+        doSerialize(gen, serializers);
+        endSerialize(gen);
+    }
+
+    protected void startSerialize(JsonGenerator gen) throws IOException {
+        gen.writeStartObject();
+    }
+
+    protected void doSerialize(JsonGenerator gen, SerializerProvider serializers) throws IOException {
+        gen.writeStringField("uuid", this.uuid.toString());
+        gen.writeStringField("login", this.login);
+        gen.writeStringField("message", this.message);
+    }
+
+    protected void endSerialize(JsonGenerator gen) throws IOException {
+        gen.writeEndObject(); // Closing Object..
+    }
+
+    /**
+     * Serialization method called when additional type information is
+     * expected to be included in serialization, for deserialization to use.
+     * <p/>
+     * Usually implementation consists of a call to one of methods
+     * in {@link TypeSerializer} (such as {@link TypeSerializer#writeTypePrefixForObject(Object, JsonGenerator)})
+     * followed by serialization of contents,
+     * followed by another call to {@link TypeSerializer}
+     * (such as {@link TypeSerializer#writeTypeSuffixForObject(Object, JsonGenerator)}).
+     * Exact methods to call in {@link TypeSerializer} depend on shape of JSON Object used
+     * (Array, Object or scalar like String/Number/Boolean).
+     * <p/>
+     * Note that some types (most notably, "natural" types: String, Integer,
+     * Double and Boolean) never include type information.
+     *
+     * @param gen
+     * @param serializers
+     * @param typeSer
+     */
+    @Override
+    public void serializeWithType(JsonGenerator gen, SerializerProvider serializers, TypeSerializer typeSer) throws IOException {
+
     }
 }
