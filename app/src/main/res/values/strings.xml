@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name" translatable="false">LiteChat</string>
     <string name="menuLogout">Log out</string>
+    <string name="menuRefresh">Refresh</string>
 
     <string name="buttonViewMessages">View messages</string>
     <string name="buttonSendMessage">Send message</string>

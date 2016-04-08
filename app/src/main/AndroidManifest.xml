@@ -30,24 +30,6 @@
         </activity>
         <!--<activity android:name=".tasks.LogInTask" />-->
         <activity
-            android:name=".activities.MainMenuActivity"
-            android:label="@string/title_activity_nav"
-            android:parentActivityName=".activities.LogInActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activities.LogInActivity" />
-        </activity>
-        <activity
-            android:name=".activities.SendMessageActivity"
-            android:label="@string/title_activity_send_message"
-            android:parentActivityName=".activities.MainMenuActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activities.MainMenuActivity" />
-        </activity>
-        <activity
             android:name=".activities.ViewMessagesActivity"
             android:label="@string/title_activity_view_messages"
             android:parentActivityName=".activities.MainMenuActivity"

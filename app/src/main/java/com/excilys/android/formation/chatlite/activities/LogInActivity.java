@@ -142,7 +142,7 @@ public class LogInActivity extends AppCompatActivity {
     }
 
     public void startMainMenuActivity() {
-        Intent intent = new Intent(this, MainMenuActivity.class);
+        Intent intent = new Intent(this, ViewMessagesActivity.class);
         intent.putExtra(EXTRA_USERNAME, user.getLogin());
         intent.putExtra(EXTRA_PASSWORD, user.getPassword());
         startActivity(intent);
